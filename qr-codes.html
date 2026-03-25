@@ -24,7 +24,7 @@
   }
   .card h2 { margin-bottom: 15px; color: #e94560; }
   .card p { color: #aaa; margin-bottom: 20px; font-size: 14px; }
-  .card img { border-radius: 8px; width: 280px; height: 280px; }
+  .card img { border-radius: 8px; width: 300px; height: 300px; }
   .instructions {
     background: #0f3460;
     border-radius: 12px;
@@ -34,7 +34,6 @@
     color: #ccc;
   }
   .instructions h3 { color: #e94560; margin-bottom: 10px; }
-  code { background: #1a1a2e; padding: 2px 6px; border-radius: 4px; }
   a { color: #e94560; }
 </style>
 </head>
@@ -45,20 +44,19 @@
 <div class="card">
   <h2>QR #1 - "Your Phone Has Been Hacked"</h2>
   <p>Opens a scary full-screen hacked warning page</p>
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADKElEQVR4nO1bbWrjQAyVbEN/OjfIUSY32COVPdLewD5KDlCwfy44aHmSxnZLYWtqkjqjR5k49jzioUIfTzMstBl9tZ1DFCRHkBxBcgTJESRHkBxBOhKJHQ2uGuIL7l3oxsynGxONecLlOGvaiCC9JyUBBr8p3diQ/D7VQumqBlLrcznUmrYhSI7GP8cTUfpDJP0FToGIKV2ZhPBHI75TPR1jTVWQdiTx60AkIhNJpzdGDyK7/9KXEISH+YgM6U/qCmoxp9D/yo7hOGuqgrQDqRUxp5BksqSSEtIKHQD1G3v80iYE6VGkXiuJEyqMEW5jfLEs0r9q1cHMh1rTNgTJwR9UbMYgRDcLJ59q3KFiPz+JLyOzOooln5SOaqHe9IiG9Cr0iOcnNTpKj4BB7VvDSW4NUyvwFlqHetQQRBI+xJqqIO3gI9pplT0Y0gCFavCnPuW7v7QRQbo7iUyM7FoIEDpkCZMIJgCLUDFTOpQjNvmHr6kK0vctQvI/XqUIuzJlGzUnKlI1kLCIUvIIhhrF1E4NygzUHxCnTgNx6lSrQtVhdeh9X68K0sNIN5YOuSOjv9Wfp3xPHyLB6M/R6SopaogGhzmj0AfILB165Q3QiBoFWAQhQ1ATWJIJu6e2ocoESo+wiGIsglo1C48L5ihkVXDU+SosopjqU+a4ML3XI+rcArM2eVhEESR+vTbW3VSd2swCOiZR+5fNg2AIFbs0PaI2kfJjommeITLLojLLYU4l1QQ0vVTZul1STp0SFlEESWAH1uJMV4gSZ9jB9cVSCNtA058RPx7yehsRpL0yyzTXoR4rvMxwZSJPCR9RStQQCw6zMrEqQRXR6SpLs3Tke+4jLJx4KzTPCYso6UwX6TZsHNmhHqe7UJZ6gjEca00bEaQM8wxJP+ZqYtXSWHwEEHlEOXkEeRbZrYTLpdMVmmWxJ3jYhnYQDPARb7pnAoNgu8R9X68K0o8gSYet2TgErKJEPrShXdAf8Hr/Q5D2zCNkLi5W8UN31blaEVHjyUm01Jw074rw9vfcFzf9KvZHFHmm6yuIM10ZQXIEyREkR5AcQXIEyfGMpH9ugJfbCxxfVQAAAABJRU5ErkJggg==" alt="QR Code 1">
+  <img src="qr1.png" alt="QR Code 1">
   <p style="margin-top:15px;"><a href="hacked.html">Preview the page</a></p>
 </div>
 
 <div class="card">
   <h2>QR #2 - Animated Hacking Counter</h2>
   <p>Opens a full hacking animation with running "Contacts Exploited" counter</p>
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADFElEQVR4nO1c0YqrQAxNVNjHEfYD9lP0zy79M/2U/YAL+liYkktmEpWyffCu0No550HUzmE7NCSZk2RZaDfGaj+HCCQDSAaQBCAZQDKAZADpTCQ2NMTcaqbAjS+Y9W72Bf1Tvt5OgHQAqRPFpHffbgxje2Pmr6j3dfpcTrWnfQDpjjS7Axi/rpze8J/vhmTQO/0geZA70i6AdA5Sc/csY98Qd9On2kZsmKiJT/x6FUjPtggmqiNTUEehKUQ3EAnNB/ylCqRTkYJIihAyhCvLpV3f3XI4EZF4sj3tAkiObcZItVA3/XTxBSkDHV58TxVIv44asjxLyixzeqnegihd5Ex7qkD6vY/o1pCgUM8gQ4geK4IuSWdT+IiCoobory+Dag85o8hpRVyWmCgBi3hrEtmvPJlnyP6AgulS6xLLMmARpUSNKYWJ9OBhYjEBWze5+cAiCiGxipQ08oeawI1FxNRLQxBBXaOgzFLMR2j2kF2GIVoyYR4EPuLNSWQ/coiWR9iRIuWYimQHGjBSygmLKEbFnj9ECxnL+1q0uJGfmULM61hF7ZffUwXSEWeN2vXJnFmay8iHkE3BHD6ipKhB+eBpp89N1NCA4fYCi3hzEpnYEFSIWlOInEqaWazSFSyiHB9Bpk9awNDQscjWqygBi3h/Em0FySklDknFNvUyC1bmN5BHlFbp6nL8WOSJRalczqawiIJUbPIw4T5iVaj8HaJGUV11teYQsRGiJELcWMY+NdR9Co9trb2XrbdJvPieKpCOOWvQqkes+eS2fcrq4vARRShUDnubD54+pbHYRn6GRZQ000XZR2gVtJNrfmuDXd4ucZI97QRIj2a6FHLxCoe3S8Q84nWqPe0DSI9mumhuiHstfKVyV6/uYVRHsWnFPMmedgGkR6SxtfoW9zNzesxpxUXnhNExU96UH82ttuPf1BhSV77FCqbwtznHniqQDiAFb59SO1iFyzzONeR/GYBJ4CJnushLGlYPXdsllhMqTp9FzXTR9uIGcjfU9eJ7qkDKAMkAkgEkA0gGkAwgGf4rs/wH07Kdy+SCFfAAAAAASUVORK5CYII=" alt="QR Code 2">
+  <img src="qr2.png" alt="QR Code 2">
   <p style="margin-top:15px;"><a href="prank-hacked.html">Preview the page</a></p>
 </div>
 
 <div class="instructions">
   <h3>How to use</h3>
-  <p>Both QR codes point to <code>saikalur.github.io/qrcode-prank</code> — works from any network!</p>
   <p>Just scan a QR code with your phone's camera and watch the reaction.</p>
 </div>
 </body>
