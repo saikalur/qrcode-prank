@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Alert</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .skull {
+    font-size: 80px;
+    animation: pulse 1s infinite;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    animation: flicker 0.5s infinite alternate;
+    margin-bottom: 30px;
+    color: #f00;
+    text-shadow: 0 0 10px #f00, 0 0 20px #f00;
+  }
+  .counter {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #0f0;
+    text-shadow: 0 0 8px #0f0;
+  }
+  .progress-bar {
+    width: 300px;
+    height: 20px;
+    border: 1px solid #0f0;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #0f0;
+    width: 0%;
+    transition: width 0.3s;
+    box-shadow: 0 0 10px #0f0;
+  }
+  .log {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #0a0;
+    max-width: 400px;
+    text-align: left;
+  }
+  .log div {
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+    margin: 4px 0;
+  }
+  .disclaimer {
+    position: fixed;
+    bottom: 20px;
+    color: #333;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .disclaimer:hover { color: #888; }
+
+  /* April Fools reveal overlay */
+  .reveal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: revealFadeIn 0.8s ease forwards;
+  }
+  .reveal.show { display: flex; }
+  .reveal-emoji {
+    font-size: 100px;
+    animation: bounce 0.6s infinite alternate;
+    margin-bottom: 30px;
+  }
+  .reveal-text {
+    font-size: 40px;
+    color: #ff0;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px #ff0, 0 0 40px #ff0;
+    animation: rainbow 1.5s infinite;
+  }
+  .reveal-sub {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #0f0;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s 0.6s forwards;
+  }
+  .reveal-counter {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #555;
+    opacity: 0;
+    animation: fadeIn 0.5s 1s forwards;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  @keyframes flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.7; }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes revealFadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+  }
+  @keyframes rainbow {
+    0%   { color: #ff0; text-shadow: 0 0 20px #ff0; }
+    25%  { color: #0ff; text-shadow: 0 0 20px #0ff; }
+    50%  { color: #f0f; text-shadow: 0 0 20px #f0f; }
+    75%  { color: #0f0; text-shadow: 0 0 20px #0f0; }
+    100% { color: #ff0; text-shadow: 0 0 20px #ff0; }
+  }
+  .matrix-char {
+    position: fixed;
+    color: #0f0;
+    font-size: 16px;
+    opacity: 0.3;
+    animation: fall linear forwards;
+    pointer-events: none;
+  }
+  @keyframes fall {
+    to { transform: translateY(110vh); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="skull">&#9760;</div>
+<h1>Your phone has<br>been hacked</h1>
+<div class="counter">Contacts Exploited: <span id="count">0</span></div>
+<div class="progress-bar"><div class="progress-fill" id="bar"></div></div>
+<div class="log" id="log"></div>
+<div class="disclaimer" onclick="alert('Relax! This is just a harmless prank page. Nothing was hacked.')">
+  Tap here for the truth
+</div>
+
+<!-- April Fools reveal -->
+<div class="reveal" id="reveal">
+  <div class="reveal-emoji">😄</div>
+  <div class="reveal-text">April Fools Day!</div>
+  <div class="reveal-sub">Got you! Nothing was hacked 😂</div>
+  <div class="reveal-counter">Counter still going: <span id="reveal-count">0</span> / 100</div>
+</div>
+
+<script>
+const countEl = document.getElementById('count');
+const barEl = document.getElementById('bar');
+const logEl = document.getElementById('log');
+const revealEl = document.getElementById('reveal');
+const revealCountEl = document.getElementById('reveal-count');
+
+const fakeNames = [
+  'Mom', 'Dad', 'Best Friend', 'Boss', 'Ex', 'Grandma',
+  'Work Group Chat', 'Bank App', 'Saved Passwords', 'Photo Gallery',
+  'WhatsApp Backup', 'Email Archive', 'Location History', 'Browser History'
+];
+
+let count = 0;
+let nameIdx = 0;
+let revealed = false;
+
+function addLog(msg) {
+  const d = document.createElement('div');
+  d.textContent = '> ' + msg;
+  d.style.animationDelay = '0s';
+  logEl.prepend(d);
+  if (logEl.children.length > 8) logEl.removeChild(logEl.lastChild);
+}
+
+function spawnMatrixChar() {
+  const el = document.createElement('div');
+  el.className = 'matrix-char';
+  el.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.animationDuration = (2 + Math.random() * 3) + 's';
+  document.body.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+}
+
+function tick() {
+  count++;
+  countEl.textContent = count;
+  barEl.style.width = Math.min(count, 100) + '%';
+
+  if (count % 7 === 0 && nameIdx < fakeNames.length) {
+    addLog('Accessing: ' + fakeNames[nameIdx++]);
+  }
+
+  // Reveal at ~20 contacts
+  if (count === 20 && !revealed) {
+    revealed = true;
+    revealCountEl.textContent = count;
+    revealEl.classList.add('show');
+  }
+
+  if (revealed) {
+    revealCountEl.textContent = count;
+  }
+
+  if (count < 100) {
+    setTimeout(tick, 80 + Math.random() * 120);
+  } else {
+    addLog('EXTRACTION COMPLETE');
+    barEl.style.background = '#f00';
+    barEl.style.boxShadow = '0 0 15px #f00';
+  }
+}
+
+setInterval(spawnMatrixChar, 100);
+setTimeout(tick, 1000);
+</script>
+</body>
+</html>
